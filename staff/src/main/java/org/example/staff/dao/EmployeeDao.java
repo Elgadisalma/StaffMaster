@@ -5,6 +5,9 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.example.staff.model.Employee;
 
+import java.util.List;
+import java.util.Optional;
+
 public class EmployeeDao {
     private EntityManagerFactory entityManagerFactory;
 
@@ -41,6 +44,27 @@ public class EmployeeDao {
     }
 
     public List<Employee> getEmployees() {
-        return List.of();
+        EntityManager em = null;
+        List<Employee> employees = null;
+        try {
+            em = entityManagerFactory.createEntityManager();
+            em.getTransaction().begin();
+
+            employees = em.createQuery("SELECT e FROM Employee e", Employee.class).getResultList();
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (em != null) {
+                em.getTransaction().rollback();
+            }
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return employees;
     }
+
+
 }

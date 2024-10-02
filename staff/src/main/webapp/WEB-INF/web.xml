@@ -4,14 +4,37 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
 
+    <welcome-file-list>
+        <welcome-file>view/index.jsp</welcome-file>
+    </welcome-file-list>
+
 
     <servlet>
-        <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>org.example.staff.HelloServlet</servlet-class>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>org.example.staff.controller.HomeServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
-        <servlet-name>HelloServlet</servlet-name>
-        <url-pattern>/hello-servlet</url-pattern>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/homeServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EmployeeCreateServlet</servlet-name>
+        <servlet-class>org.example.staff.controller.EmployeeCreateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeeCreateServlet</servlet-name>
+        <url-pattern>/view/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListEmployesServlet</servlet-name>
+        <servlet-class>org.example.staff.controller.ListEmployesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListEmployesServlet</servlet-name>
+        <url-pattern>/view/display</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
