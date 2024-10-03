@@ -5,7 +5,7 @@
          version="6.0">
 
     <welcome-file-list>
-        <welcome-file>view/index.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
 
@@ -24,7 +24,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>EmployeeCreateServlet</servlet-name>
-        <url-pattern>/view/add</url-pattern>
+        <url-pattern>/add</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -33,8 +33,26 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ListEmployesServlet</servlet-name>
-        <url-pattern>/view/display</url-pattern>
+        <url-pattern>/display</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UpdateEmployeeServlet</servlet-name>
+        <servlet-class>org.example.staff.controller.UpdateEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateEmployeeServlet</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DeleteEmployeeServlet</servlet-name>
+        <servlet-class>org.example.staff.controller.DeleteEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteEmployeeServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
 
 </web-app>

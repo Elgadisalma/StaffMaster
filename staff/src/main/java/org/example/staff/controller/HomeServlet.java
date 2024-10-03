@@ -21,7 +21,7 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("view/index.jsp").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class HomeServlet extends HttpServlet {
 
         switch (action) {
             case "add":
-                response.sendRedirect("view/addEmployee.jsp");
+                response.sendRedirect("addEmployee.jsp");
                 break;
 //            case "update":
 //                response.sendRedirect("updateEmployee.jsp"); // Rediriger vers la page de modification
@@ -43,10 +43,10 @@ public class HomeServlet extends HttpServlet {
 
                 request.setAttribute("employees", employees);
 
-                request.getRequestDispatcher("view/listEmployees.jsp").forward(request, response);
+                request.getRequestDispatcher("listEmployees.jsp").forward(request, response);
                 break;
             default:
-                response.sendRedirect("view/index.jsp");
+                response.sendRedirect("index.jsp");
                 break;
         }
     }

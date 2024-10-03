@@ -1,6 +1,5 @@
 package org.example.staff.controller;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,9 +8,8 @@ import org.example.staff.dao.EmployeeDao;
 import org.example.staff.model.Employee;
 
 import java.io.IOException;
-import java.util.List;
 
-public class ListEmployesServlet extends HttpServlet {
+public class UpdateEmployeeServlet extends HttpServlet {
 
     private EmployeeDao employeeDAO;
 
@@ -20,12 +18,12 @@ public class ListEmployesServlet extends HttpServlet {
         employeeDAO = new EmployeeDao();
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Employee> employees = employeeDAO.getEmployees();
-        req.setAttribute("employees", employees);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        long id = Long.parseLong(request.getParameter("id"));
+        Employee employee = employeeDAO.getEmployeeById(id);
 
-        req.getRequestDispatcher("/listEmployees.jsp").forward(req, resp);
+        request.setAttribute("employee", employee);
+
+        request.getRequestDispatcher("updateEmployee.jsp").forward(request, response);
     }
-
 }
-

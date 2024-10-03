@@ -34,7 +34,7 @@ public class EmployeeCreateServlet extends HttpServlet {
 
         employeeDAO.addEmployee(employee);
 
-        resp.sendRedirect("view/index.jsp");
+        resp.sendRedirect("index.jsp");
     }
 
     @Override

@@ -27,6 +27,10 @@
       <td>${employee.phone}</td>
       <td>${employee.department}</td>
       <td>${employee.position}</td>
+      <td>
+        <a href="editEmployee?id=${employee.id}">Modifier</a> |
+        <a href="delete?id=${employee.id}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?');">Supprimer</a>
+        </td>
     </tr>
   </c:forEach>
 </table>

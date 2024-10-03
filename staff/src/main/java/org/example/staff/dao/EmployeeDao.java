@@ -35,12 +35,40 @@ public class EmployeeDao {
 
     }
 
-    public void deleteEmployee(Employee employee) {
-
+    public Employee getEmployeeById(long id) {
+        EntityManager em = null;
+        Employee employee = null;
+        try {
+            em = entityManagerFactory.createEntityManager();
+            employee = em.find(Employee.class, id);
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return employee;
     }
 
-    public Optional<Employee> getEmployee(int id) {
-        return Optional.empty();
+    public void deleteEmployee(long id) {
+        EntityManager em = null;
+        try {
+            em = entityManagerFactory.createEntityManager();
+            em.getTransaction().begin();
+            Employee employee = em.find(Employee.class, id);
+            if (employee != null) {
+                em.remove(employee);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (em != null) {
+                em.getTransaction().rollback();
+            }
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
     }
 
     public List<Employee> getEmployees() {
