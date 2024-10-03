@@ -32,12 +32,6 @@ public class HomeServlet extends HttpServlet {
             case "add":
                 response.sendRedirect("addEmployee.jsp");
                 break;
-//            case "update":
-//                response.sendRedirect("updateEmployee.jsp"); // Rediriger vers la page de modification
-//                break;
-//            case "delete":
-//                response.sendRedirect("deleteEmployee.jsp"); // Rediriger vers la page de suppression
-//                break;
             case "view":
                 List<Employee> employees = employeeDAO.getEmployees();
 

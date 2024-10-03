@@ -52,7 +52,6 @@ public class EmployeeDao {
         }
     }
 
-
     public Employee getEmployeeById(long id) {
         EntityManager em = null;
         Employee employee = null;

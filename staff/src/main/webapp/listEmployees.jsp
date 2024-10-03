@@ -10,8 +10,13 @@
 
 <!-- Formulaire de recherche -->
 <form action="display" method="get">
+
   <label for="search">Rechercher :</label>
-  <input type="text" id="search" name="searchQuery" placeholder="Nom, Email, Département, Poste">
+  <input type="text" id="search" name="searchQuery" placeholder="Rechercher un employee">
+
+  <label for="department">Departement :</label>
+  <input type="text" id="department" name="department" placeholder="Departement">
+
   <input type="submit" value="Rechercher">
 </form>
 
@@ -35,7 +40,7 @@
       <td>${employee.position}</td>
       <td>
         <a href="edit?id=${employee.id}">Modifier</a>
-        <a href="delete?id=${employee.id}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?');">Supprimer</a>
+        <a href="delete?id=${employee.id}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employe ?');">Supprimer</a>
         </td>
     </tr>
   </c:forEach>

@@ -21,32 +21,41 @@ public class ListEmployesServlet extends HttpServlet {
         employeeDAO = new EmployeeDao();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Récupérer la liste de tous les employés
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Employee> employees = employeeDAO.getEmployees();
 
-        // Récupérer la requête de recherche
         String searchQuery = request.getParameter("searchQuery");
+        String departmentQuery = request.getParameter("department");
 
-        // Vérifier s'il y a une requête de recherche
+//        search
         if (searchQuery != null && !searchQuery.trim().isEmpty()) {
-            // Filtrer les employés en fonction de la requête de recherche
             List<Employee> filteredEmployees = employees.stream()
                     .filter(e -> e.getName().toLowerCase().contains(searchQuery.toLowerCase()) ||
                             e.getEmail().toLowerCase().contains(searchQuery.toLowerCase()) ||
-                            e.getDepartment().toLowerCase().contains(searchQuery.toLowerCase()) ||
-                            e.getPosition().toLowerCase().contains(searchQuery.toLowerCase()))
+                            e.getPosition().toLowerCase().contains(searchQuery.toLowerCase()) ||
+                            e.getDepartment().toLowerCase().contains(searchQuery.toLowerCase()))
                     .collect(Collectors.toList());
 
-            // Si des résultats sont trouvés
             if (!filteredEmployees.isEmpty()) {
                 request.setAttribute("employees", filteredEmployees);
             } else {
                 request.setAttribute("message", "Aucun employé ne correspond à la recherche.");
             }
-        } else {
-            // Si pas de requête de recherche, afficher tous les employés
+        }
+//        filter
+        else if (departmentQuery != null && !departmentQuery.trim().isEmpty()) {
+            List<Employee> filteredByDepartment = employees.stream()
+                    .filter(e -> e.getDepartment().equalsIgnoreCase(departmentQuery))
+                    .collect(Collectors.toList());
+
+            if (!filteredByDepartment.isEmpty()) {
+                request.setAttribute("employees", filteredByDepartment);
+            } else {
+                request.setAttribute("message", "Aucun employé trouvé dans ce département.");
+            }
+        }
+
+        else {
             if (!employees.isEmpty()) {
                 request.setAttribute("employees", employees);
             } else {
@@ -54,9 +63,9 @@ public class ListEmployesServlet extends HttpServlet {
             }
         }
 
-        // Rediriger vers la JSP pour afficher la liste des employés
         request.getRequestDispatcher("/listEmployees.jsp").forward(request, response);
     }
+
 
 }
 
