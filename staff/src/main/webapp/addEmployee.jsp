@@ -3,27 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>StaffMaster</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/app.css">
 </head>
-<body>
-    <h2>Ajouter un Employé</h2>
-    <form action="add" method="post">
-        <label for="name">Nom:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+<body class="dark-background">
+<div class="container">
+    <h2>Ajouter un Employe</h2>
+    <form action="add" method="post" class="form">
+        <div class="form-group">
+            <label for="name">Nom:</label><br>
+            <input type="text" id="name" name="name" class="input-field" required><br><br>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" class="input-field" required><br><br>
+        </div>
+        <div class="form-group">
+            <label for="phone">Telephone:</label><br>
+            <input type="text" id="phone" name="phone" class="input-field" required><br><br>
+        </div>
+        <div class="form-group">
+            <label for="department">Departement:</label><br>
+            <input type="text" id="department" name="department" class="input-field" required><br><br>
+        </div>
+        <div class="form-group">
+            <label for="position">Poste:</label><br>
+            <input type="text" id="position" name="position" class="input-field" required><br><br>
+        </div>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="phone">Téléphone:</label><br>
-        <input type="text" id="phone" name="phone" required><br><br>
-
-        <label for="department">Département:</label><br>
-        <input type="text" id="department" name="department" required><br><br>
-
-        <label for="position">Poste:</label><br>
-        <input type="text" id="position" name="position" required><br><br>
-
-        <input type="submit" value="Ajouter">
+        <input type="submit" value="Ajouter" class="submit-btn">
     </form>
-
+</div>
 </body>
 </html>
