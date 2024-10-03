@@ -32,8 +32,26 @@ public class EmployeeDao {
     }
 
     public void updateEmployee(Employee employee) {
+        EntityManager em = null;
+        try {
+            em = entityManagerFactory.createEntityManager();
+            em.getTransaction().begin();
 
+            em.merge(employee);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (em != null) {
+                em.getTransaction().rollback();
+            }
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
     }
+
 
     public Employee getEmployeeById(long id) {
         EntityManager em = null;

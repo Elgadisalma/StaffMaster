@@ -18,12 +18,30 @@ public class UpdateEmployeeServlet extends HttpServlet {
         employeeDAO = new EmployeeDao();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("id");
+        if (id != null) {
+            long employeeId = Long.parseLong(id);
+            Employee employee = employeeDAO.getEmployeeById(employeeId);
+            request.setAttribute("employee", employee);
+            request.getRequestDispatcher("/editEmployee.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("index.jsp");
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Long.parseLong(request.getParameter("id"));
-        Employee employee = employeeDAO.getEmployeeById(id);
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String department = request.getParameter("department");
+        String position = request.getParameter("position");
 
-        request.setAttribute("employee", employee);
+        Employee employee = new Employee(id, name, email, phone, department, position);
+        employeeDAO.updateEmployee(employee);
 
-        request.getRequestDispatcher("updateEmployee.jsp").forward(request, response);
+        response.sendRedirect("index.jsp");
     }
 }
