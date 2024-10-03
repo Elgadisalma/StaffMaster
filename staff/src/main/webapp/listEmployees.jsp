@@ -8,6 +8,12 @@
 <body>
 <h2>Liste des Employes</h2>
 
+<!-- Formulaire de recherche -->
+<form action="display" method="get">
+  <label for="search">Rechercher :</label>
+  <input type="text" id="search" name="searchQuery" placeholder="Nom, Email, Département, Poste">
+  <input type="submit" value="Rechercher">
+</form>
 
 <table>
   <tr>
@@ -28,7 +34,7 @@
       <td>${employee.department}</td>
       <td>${employee.position}</td>
       <td>
-        <a href="editEmployee?id=${employee.id}">Modifier</a> |
+        <a href="edit?id=${employee.id}">Modifier</a>
         <a href="delete?id=${employee.id}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?');">Supprimer</a>
         </td>
     </tr>
